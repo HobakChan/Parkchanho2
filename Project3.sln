@@ -1,3 +1,4 @@
+
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
@@ -26,6 +27,29 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FDD27170-4768-46FC-BA05-FFF89EF24B10}
+		SolutionGuid = {FDD27170-4768-46FC-BA05-FFF89EF24B1
 	EndGlobalSection
 EndGlobal
+
+from vega_datasets import data
+cars = data.cars()
+
+import altair as alt
+
+interval = alt.selection_interval()
+
+points = alt.Chart(cars).mark_point().encode(
+  x='Horsepower',
+  y='Miles_per_Gallon',
+  color=alt.condition(interval, 'Origin', alt.value('lightgray'))
+).properties(
+  selection=interval
+)
+
+histogram = alt.Chart(cars).mark_bar().encode(
+  x='count()',
+  y='Origin',
+  color='Origin'
+).transform_filter(interval)
+
+points & histogram
