@@ -1,3 +1,5 @@
+prices = 1
+
 def maxProfit_bruteforce (prices):
    max_price = 0
 
@@ -7,3 +9,5 @@ def maxProfit_bruteforce (prices):
 
    return
 
+if '__name__' == '__main__':
+    max_Profit_bruteforce(pries)
